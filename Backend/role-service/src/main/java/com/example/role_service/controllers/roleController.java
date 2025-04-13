@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/role-service")
+@RequestMapping("/")
 public class roleController {
 
     @Autowired
