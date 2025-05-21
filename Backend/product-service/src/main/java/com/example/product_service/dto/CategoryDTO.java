@@ -1,13 +1,16 @@
 package com.example.product_service.dto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 @Data
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CategoryDTO {
-    public String categoryName;
-    public Integer parentId;
+
+    @JsonProperty("categoryName")
+    private String categoryName;
+
+    @JsonProperty("parentId")
+    private Integer parentId;
 }

@@ -10,7 +10,14 @@ spring:
     username: root
     password: root
   jpa:
+    hibernate:
+      ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  jackson:
+    property-naming-strategy: LOWER_CAMEL_CASE  # Đảm bảo ánh xạ JSON đúng với camelCase
 
 eureka:
   client:
@@ -18,3 +25,7 @@ eureka:
       default-zone: http://localhost:8761/eureka
   instance:
     prefer-ip-address: true
+
+logging:
+  level:
+    com.fasterxml.jackson: DEBUG
