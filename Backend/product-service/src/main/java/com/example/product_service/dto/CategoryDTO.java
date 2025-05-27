@@ -1,6 +1,5 @@
 package com.example.product_service.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Data
@@ -8,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 public class CategoryDTO {
 
-    @JsonProperty("categoryName")
+    private Long id;
+
     private String categoryName;
 
-    @JsonProperty("parentId")
     private Integer parentId;
 }

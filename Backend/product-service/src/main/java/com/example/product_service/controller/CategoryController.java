@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path ="api/v1/category")
+@RequestMapping(path ="api/v1")
 public class CategoryController {
 
     @Autowired
@@ -22,14 +22,12 @@ public class CategoryController {
     }
 
     @PostMapping(value = "/category")
-    public ResponseEntity<Category> save(@RequestBody CategoryDTO request) {
-        Category categoryCreated = categoryService.createCategory(request);
-        return ResponseEntity.ok(categoryCreated);
+    public ResponseEntity<Category> createCategory(@RequestBody CategoryDTO request) {
+        return ResponseEntity.ok(categoryService.createCategory(request));
     }
 
     @RequestMapping(value = "/category", method = RequestMethod.PUT)
-    public ResponseEntity<Category> update(@RequestBody CategoryDTO request) {
-        Category categoryCreated = categoryService.updateCategory(request);
-        return ResponseEntity.ok(categoryCreated);
+    public ResponseEntity<Category> updateCategory(@RequestBody CategoryDTO request) {
+        return ResponseEntity.ok(categoryService.updateCategory(request));
     }
 }
