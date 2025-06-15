@@ -29,11 +29,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryById(CategoryDTO categoryDTO) {
-        return categoryRepository.findById(categoryDTO.getId())
+    public Category getCategoryById(Long id) {
+        return categoryRepository.findById(id)
                 .orElseThrow(() -> {
-                    log.error("Product Service - Get Category By Id - error with id {}", categoryDTO.getId());
-                    return new CategoryException("Error category not found with id: " + categoryDTO.getId());
+                    log.error("Product Service - Get Category By Id - error with id {}", id);
+                    return new CategoryException("Error category not found with id: " + id);
                 });
     }
 
@@ -53,7 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public Category updateCategory(CategoryDTO categoryDTO) {
         try {
-            Category existingCategory = getCategoryById(categoryDTO);
+            Category existingCategory = getCategoryById(categoryDTO.getId());
             Category category = modelMapper.map(categoryDTO, Category.class);
             category.setId(existingCategory.getId());
             return categoryRepository.save(category);

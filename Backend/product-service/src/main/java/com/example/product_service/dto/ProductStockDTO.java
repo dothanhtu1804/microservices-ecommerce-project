@@ -1,6 +1,5 @@
 package com.example.product_service.dto;
 
-import com.example.product_service.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ import java.time.LocalDateTime;
 public class ProductStockDTO {
     private Long id;
 
-    private Product product;
+    private ProductDTO product;
 
     private Integer qty;
 

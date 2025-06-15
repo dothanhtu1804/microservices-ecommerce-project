@@ -20,7 +20,7 @@ public class APIExceptionHandler {
     public <T extends RuntimeException> ResponseEntity<ExceptionMessage> handleApiRequestException(final T e) {
         return new ResponseEntity<>(
                 ExceptionMessage.builder()
-                        .message(e.getMessage())
+                        .message(e.getCause().getMessage())
                         .httpStatus(HttpStatus.BAD_REQUEST)
                         .build(), HttpStatus.BAD_REQUEST);
     }

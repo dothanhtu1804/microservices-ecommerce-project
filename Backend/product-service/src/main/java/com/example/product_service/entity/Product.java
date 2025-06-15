@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"category", "productStocks", "productPrices", "productVariants"})
 public class Product {
 
     @Id
@@ -40,11 +42,14 @@ public class Product {
     @Column(name = "product_name")
     private String productName;
 
-    @Column(name = "price_old")
-    private BigDecimal priceOld;
+    @Column(name = "product_desc")
+    private String productDesc;
 
-    @Column(name = "price_new")
-    private BigDecimal priceNew;
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "brand")
+    private String brand;
 
     @Column(name = "created_by")
     private String createdBy;

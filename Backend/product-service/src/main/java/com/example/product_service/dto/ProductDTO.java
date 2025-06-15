@@ -1,13 +1,10 @@
 package com.example.product_service.dto;
 
-import com.example.product_service.entity.ProductPrice;
-import com.example.product_service.entity.ProductStock;
-import com.example.product_service.entity.ProductVariant;
+import com.example.product_service.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +15,21 @@ import java.util.List;
 public class ProductDTO {
     private Long id;
 
-    private List<ProductStock> productStocks = new ArrayList<>();
+    private Category category;
 
-    private List<ProductVariant> productVariants = new ArrayList<>();
+    private List<ProductStockDTO> productStocks = new ArrayList<>();
 
-    private List<ProductPrice> productPrices = new ArrayList<>();
+    private List<ProductVariantDTO> productVariants = new ArrayList<>();
+
+    private List<ProductPriceDTO> productPrices = new ArrayList<>();
 
     private String productName;
 
-    private BigDecimal priceOld;
+    private String productDesc;
 
-    private BigDecimal priceNew;
+    private String imageUrl;
+
+    private String brand;
 
     private String createdBy;
 

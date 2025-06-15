@@ -29,6 +29,9 @@ public class ProductPrice {
     @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "sku")
+    private String sku;
+
     @Column(name = "region")
     private String region;
 
