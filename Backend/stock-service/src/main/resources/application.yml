@@ -1,12 +1,12 @@
 server:
-  port: 8801
+  port: 8804
 
 spring:
   application:
-    name: user-service
+    name: stock-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/user-service
+    url: jdbc:mysql://localhost:3306/stock-service
     username: root
     password: root
   jpa:

@@ -6,7 +6,7 @@ spring:
     name: product-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/tgdd_product_service?characterEncoding=utf8&rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/product-service?characterEncoding=utf8&rewriteBatchedStatements=true
     username: root
     password: root
   jpa:
