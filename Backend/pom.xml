@@ -29,6 +29,7 @@
         <module>user-service</module>
         <module>role-service</module>
         <module>product-service</module>
+        <module>stock-service</module>
     </modules>
     <build>
         <plugins>
