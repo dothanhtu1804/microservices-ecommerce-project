@@ -10,6 +10,8 @@ public class StoreDTO {
 
     private Long countryId;
 
+    private String storeCode;
+
     private String storeName;
 
     private String address;

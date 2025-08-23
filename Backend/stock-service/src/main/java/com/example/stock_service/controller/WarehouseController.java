@@ -19,22 +19,22 @@ public class WarehouseController {
     }
 
     @GetMapping(value = "/warehouses")
-    public ResponseEntity<List<Warehouse>> getCountries() {
+    public ResponseEntity<List<Warehouse>> getWarehouses() {
         return ResponseEntity.ok(warehouseService.getAllWarehouses());
     }
 
     @GetMapping(value = "/warehouse/{id}")
-    public ResponseEntity<Warehouse> getCountryById(@PathVariable Long id) {
+    public ResponseEntity<Warehouse> getWarehouseById(@PathVariable Long id) {
         return ResponseEntity.ok(warehouseService.getWarehouseById(id));
     }
 
     @PostMapping(value = "/warehouse")
-    public ResponseEntity<Warehouse> createCountry(@RequestBody WarehouseDTO request) {
+    public ResponseEntity<Warehouse> insertWarehouse(@RequestBody WarehouseDTO request) {
         return ResponseEntity.ok(warehouseService.saveWarehouse(request));
     }
 
     @PutMapping(value = "/warehouse")
-    public ResponseEntity<Warehouse> updateCountry(@RequestBody WarehouseDTO request) {
+    public ResponseEntity<Warehouse> updateWarehouse(@RequestBody WarehouseDTO request) {
         return ResponseEntity.ok(warehouseService.updateWarehouse(request));
     }
 }

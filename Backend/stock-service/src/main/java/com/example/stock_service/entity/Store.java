@@ -22,6 +22,9 @@ public class Store {
     @Column(name = "country_id")
     private Long countryId;
 
+    @Column(name = "store_code")
+    private String storeCode;
+
     @Column(name = "store_name")
     private String storeName;
 

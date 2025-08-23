@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ServiceAPI {
 
-    COUNTRY("Country Service"), WAREHOUSE("Warehouse Service");
+    COUNTRY("Country Service"),
+    WAREHOUSE("Warehouse Service"),
+    STORE("Store Service"),;
     private final String value;
 }
