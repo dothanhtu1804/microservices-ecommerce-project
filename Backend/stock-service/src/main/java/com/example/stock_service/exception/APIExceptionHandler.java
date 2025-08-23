@@ -1,7 +1,7 @@
 package com.example.stock_service.exception;
 
 import com.example.stock_service.exception.body.ExceptionMessage;
-import com.example.stock_service.exception.wrapper.StockException;
+import com.example.stock_service.exception.wrapper.CommonException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @RequiredArgsConstructor
 public class APIExceptionHandler {
 
-    @ExceptionHandler(value = {StockException.class})
+    @ExceptionHandler(value = {CommonException.class})
     public <T extends RuntimeException> ResponseEntity<ExceptionMessage> handleApiRequestException(final T e) {
         return new ResponseEntity<>(
                 ExceptionMessage.builder()

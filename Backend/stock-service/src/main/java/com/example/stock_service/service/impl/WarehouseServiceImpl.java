@@ -1,9 +1,10 @@
-package com.example.stock_service.service.Impl;
+package com.example.stock_service.service.impl;
 
 import com.example.stock_service.dto.WarehouseDTO;
 import com.example.stock_service.entity.Country;
 import com.example.stock_service.entity.Warehouse;
-import com.example.stock_service.exception.wrapper.StockException;
+import com.example.stock_service.enums.ServiceAPI;
+import com.example.stock_service.exception.wrapper.CommonException;
 import com.example.stock_service.repository.WarehouseRepository;
 import com.example.stock_service.service.CountryService;
 import com.example.stock_service.service.WarehouseService;
@@ -34,8 +35,8 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     public Warehouse getWarehouseById(long id) {
         return warehouseRepository.findById(id).orElseThrow(() -> {
-            log.error("Stock Service - Get Warehouse By Id - error with id {}", id);
-            return new StockException("Error warehouse not found with id: " + id);
+            log.error("{} - Get Warehouse By Id - error with id {}", ServiceAPI.WAREHOUSE.getValue(), id);
+            return new CommonException("Error warehouse not found with id: " + id);
         });
     }
 
@@ -48,13 +49,13 @@ public class WarehouseServiceImpl implements WarehouseService {
     public Warehouse saveWarehouse(WarehouseDTO warehouseDTO) {
         Country existingCountry = countryService.getCountryById(warehouseDTO.getCountryId());
         if (existingCountry == null) {
-            log.error("Stock Service - Create Warehouse - There is no country with code {} exist", warehouseDTO.getCountryId());
-            throw new StockException("Stock Service - Create Warehouse - There is no country with code " + warehouseDTO.getCountryId() + " exist.");
+            log.error("{} - Create Warehouse - There is no country with code {} exist", ServiceAPI.WAREHOUSE.getValue(), warehouseDTO.getCountryId());
+            throw new CommonException("There is no country with code " + warehouseDTO.getCountryId() + " exist.");
         }
         Warehouse existingWarehouse = getWarehouseByCodeAndName(warehouseDTO.getWarehouseCode(), warehouseDTO.getWarehouseName());
         if (existingWarehouse != null) {
-            log.error("Stock Service - Create Warehouse - code {} or name {} exist", warehouseDTO.getWarehouseCode(), warehouseDTO.getWarehouseName());
-            throw new StockException("Stock Service - Create Warehouse - code " + warehouseDTO.getWarehouseCode() + " or name " + warehouseDTO.getWarehouseName() +" exist.");
+            log.error("{} - Create Warehouse - code {} or name {} exist", ServiceAPI.WAREHOUSE.getValue(), warehouseDTO.getWarehouseCode(), warehouseDTO.getWarehouseName());
+            throw new CommonException("The code " + warehouseDTO.getWarehouseCode() + " or name " + warehouseDTO.getWarehouseName() +" exist.");
         }
         Warehouse warehouse = modelMapper.map(warehouseDTO, Warehouse.class);
         return warehouseRepository.save(warehouse);
@@ -69,8 +70,8 @@ public class WarehouseServiceImpl implements WarehouseService {
             warehouse.setId(existingWarehouse.getId());
             return warehouseRepository.save(warehouse);
         } catch (Exception e) {
-            log.error("Stock Service - Update Warehouse - error with id {} with error {}", warehouseDTO.getId(), e.getMessage());
-            throw new StockException("Error update warehouse with id " + warehouseDTO.getId(), e);
+            log.error("{} - Update Warehouse - error with id {} with error {}", ServiceAPI.WAREHOUSE.getValue(), warehouseDTO.getId(), e.getMessage());
+            throw new CommonException("Error update warehouse with id " + warehouseDTO.getId(), e);
         }
     }
 }

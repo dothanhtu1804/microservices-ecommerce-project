@@ -1,8 +1,9 @@
-package com.example.stock_service.service.Impl;
+package com.example.stock_service.service.impl;
 
 import com.example.stock_service.dto.CountryDTO;
 import com.example.stock_service.entity.Country;
-import com.example.stock_service.exception.wrapper.StockException;
+import com.example.stock_service.enums.ServiceAPI;
+import com.example.stock_service.exception.wrapper.CommonException;
 import com.example.stock_service.repository.CountryRepository;
 import com.example.stock_service.service.CountryService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +29,8 @@ public class CountryServiceImpl implements CountryService {
 
     public Country getCountryById(long id) {
         return countryRepository.findById(id).orElseThrow(() -> {
-            log.error("Stock Service - Get Country By Id - error with id {}", id);
-            return new StockException("Error country not found with id: " + id);
+            log.error("{} - Get Country By Id - error with id {}", ServiceAPI.COUNTRY.name(), id);
+            return new CommonException("Error country not found with id: " + id);
         });
     }
 
@@ -40,8 +41,8 @@ public class CountryServiceImpl implements CountryService {
     public Country saveCountry(CountryDTO countryDTO) {
         Country existingCountry = getCountryByCodeAndName(countryDTO.getCountryCode(), countryDTO.getCountryName());
         if (existingCountry != null) {
-            log.error("Stock Service - Create Country - code {} or name {} exist", countryDTO.getCountryCode(), countryDTO.getCountryName());
-            throw new StockException("Stock Service - Create Country - code " + countryDTO.getCountryCode() + " or name " + countryDTO.getCountryName() +" exist.");
+            log.error("{} - Create Country - code {} or name {} exist", ServiceAPI.COUNTRY.name(), countryDTO.getCountryCode(), countryDTO.getCountryName());
+            throw new CommonException("The code" + countryDTO.getCountryCode() + " or name " + countryDTO.getCountryName() +" exist.");
         }
         Country country = modelMapper.map(countryDTO, Country.class);
         return countryRepository.save(country);
@@ -56,8 +57,8 @@ public class CountryServiceImpl implements CountryService {
             country.setId(existingCountry.getId());
             return countryRepository.save(country);
         } catch (Exception e) {
-            log.error("Stock Service - Update Country - error with id {} with error {}", countryDTO.getId(), e.getMessage());
-            throw new StockException("Error update country with id " + countryDTO.getId(), e);
+            log.error("{} - Update Country - error with id {} with error {}", ServiceAPI.COUNTRY.name(), countryDTO.getId(), e.getMessage());
+            throw new CommonException("Error update country with id " + countryDTO.getId(), e);
         }
     }
 }

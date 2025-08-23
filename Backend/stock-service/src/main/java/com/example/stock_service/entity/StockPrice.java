@@ -1,33 +1,33 @@
 package com.example.stock_service.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "tgdd_countries")
 @Getter
 @Setter
-public class Country {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity
+@Table(name = "tgdd_stock_prices")
+public class StockPrice {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-    @Column(name = "country_code")
-    private String countryCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "variant_id")
+    private StockVariant variant;
 
-    @Column(name = "country_name")
-    private String countryName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id")
+    private Country country;
 
-    @Column(name = "default_language")
-    private String defaultLanguage;
-
-    @Column(name = "currency_code")
-    private String currencyCode;
+    @Column(name = "price")
+    private String price;
 
     @Column(name = "created_by")
     private String createdBy;
