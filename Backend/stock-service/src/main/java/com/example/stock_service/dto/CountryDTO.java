@@ -1,6 +1,5 @@
 package com.example.stock_service.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.sql.Timestamp;

@@ -1,17 +1,19 @@
 package com.example.stock_service.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tgdd_warehouses")
-@Getter
-@Setter
-public class Warehouse {
+@Table(name = "tgdd_stores")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +22,11 @@ public class Warehouse {
     @Column(name = "country_id")
     private Long countryId;
 
-    @Column(name = "warehouse_code")
-    private String warehouseCode;
+    @Column(name = "store_code")
+    private String storeCode;
 
-    @Column(name = "warehouse_name")
-    private String warehouseName;
+    @Column(name = "store_name")
+    private String storeName;
 
     @Column(name = "address")
     private String address;
@@ -46,6 +48,6 @@ public class Warehouse {
     private String updatedBy;
 
     @Column(name = "updated_at")
-    @UpdateTimestamp
+    @CreationTimestamp
     private LocalDateTime updatedAt;
 }

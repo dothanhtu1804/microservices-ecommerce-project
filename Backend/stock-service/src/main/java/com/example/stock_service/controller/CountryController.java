@@ -16,22 +16,22 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
-    @RequestMapping(value = "/countries", method = RequestMethod.GET)
+    @GetMapping(value = "/countries")
     public ResponseEntity<List<Country>> getCountries() {
         return ResponseEntity.ok(countryService.getAllCountries());
     }
 
-    @RequestMapping(value = "/country/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/country/{id}")
     public ResponseEntity<Country> getCountryById(@PathVariable Long id) {
         return ResponseEntity.ok(countryService.getCountryById(id));
     }
 
-    @RequestMapping(value = "/country", method = RequestMethod.POST)
+    @PostMapping(value = "/country")
     public ResponseEntity<Country> createCountry(@RequestBody CountryDTO request) {
         return ResponseEntity.ok(countryService.saveCountry(request));
     }
 
-    @RequestMapping(value = "/country", method = RequestMethod.PUT)
+    @PutMapping(value = "/country")
     public ResponseEntity<Country> updateCountry(@RequestBody CountryDTO request) {
         return ResponseEntity.ok(countryService.updateCountry(request));
     }
